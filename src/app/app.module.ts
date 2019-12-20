@@ -3,12 +3,11 @@ import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { LoginComponent } from './login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
+import { AuthModule } from "./auth/auth.module";
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegistrationComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, AuthModule],
   providers: [],
   bootstrap: [AppComponent]
 })

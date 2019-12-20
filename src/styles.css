@@ -1,1 +1,22 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "http://fonts.fontstorage.com/import/nautilus.css";
+@import "http://fonts.fontstorage.com/import/museosanscyrl.css";
+
+.title-book {
+  font-family: "Nautilus Pompilius";
+}
+
+div.card {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.card-title {
+  font-family: "Nautilus Pompilius";
+}
+.form-group label,
+.card-footer {
+  font-family: "Museo Sans Cyrl";
+}
+.card-footer {
+  background: none;
+  border: none;
+}
