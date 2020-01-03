@@ -26,7 +26,18 @@
                        placeholder="Enter your email"
                        required
                        ngModel
-                       name="email">
+                       name="email"
+                       #email="ngModel">
+                <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                     class="invalid-feedback">
+                  <div *ngIf="email.errors.required">
+                    Email is required.
+                  </div>
+                </div>
+                <div *ngIf="email.valid"
+                     class="valid-feedback">
+                  Looks good!
+                </div>
               </div>
               <div class="form-group">
                 <label for="password"
@@ -37,7 +48,18 @@
                        placeholder="Enter your password"
                        required
                        ngModel
-                       name="password">
+                       name="password"
+                       #password="ngModel">
+                <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                     class="invalid-feedback">
+                  <div *ngIf="password.errors.required">
+                    Password is required.
+                  </div>
+                </div>
+                <div *ngIf="password.valid"
+                     class="valid-feedback">
+                  Looks good!
+                </div>
                 <div class="mb-2 text-right">
                   <a href="#!"
                      class="small text-muted">Lost password?</a>

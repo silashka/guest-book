@@ -20,3 +20,7 @@ div.card {
   background: none;
   border: none;
 }
+.invalid-feedback,
+.valid-feedback {
+  display: block;
+}
