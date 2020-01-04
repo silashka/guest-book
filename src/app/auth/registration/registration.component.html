@@ -16,10 +16,10 @@
                        id="name"
                        placeholder="Enter your name"
                        formControlName="name">
-                <span class="form-help-text"
+                <span class="invalid-feedback"
                       *ngIf="form.get('name').invalid && form.get('name').touched">
                   <span *ngIf="form.get('name')['errors']['required']"> Name is required.</span>
-                  <span *ngIf="form.get('name')['errors'] ['maxLength']"> Name is too long. No more than 255</span>
+                  <span *ngIf="form.get('name')['errors']['maxLength']"> Name is too long. No more than 255</span>
                 </span>
               </div>
               <div class="form-group"
@@ -31,24 +31,24 @@
                        type="email"
                        placeholder="Enter email"
                        formControlName="email">
-                <span class="form-help-text"
+                <span class="invalid-feedback"
                       *ngIf="form.get('email').invalid && form.get('email').touched">
                   <span *ngIf="form.get('email')['errors']['required']"> Email is required.</span>
-                  <span *ngIf="form.get('email')['errors'] ['email']"> Email is incorrect.</span>
-                  <span *ngIf="form.get('email')['errors'] ['maxLength']"> Email is too long. No more than 255</span>
+                  <span *ngIf="form.get('email')['errors']['email']"> Email is incorrect.</span>
+                  <span *ngIf="form.get('email')['errors']['maxLength']"> Email is too long. No more than 255</span>
                 </span>
               </div>
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="avatar"
                        class="col control-label">Avatar</label>
                 <input type="file"
                        class="form-control-file border"
                        id="avatar"
                        formControlName="avatar">
-              </div>
+              </div> -->
               <div class="form-group"
                    [ngClass]="{'has-error': form.get('password').invalid && form.get('password').touched}">
-                <label for="passeord"
+                <label for="password"
                        class="col control-label">Password</label>
                 <input class="form-control"
                        id="password"
@@ -56,14 +56,12 @@
                        placeholder="Enter your password"
                        formControlName="password"
                        aria-describedby="passwordHelp">
-                <span class="form-help-text"
+                <span class="invalid-feedback"
                       *ngIf="form.get('password').invalid && form.get('password').touched">
                   <span *ngIf="form.get('password')['errors']['required']"> Password is required.</span>
-                  <span *ngIf="form.get('password')['errors'] ['minLength'] && form.get('password')['errors']['minLength']['requiredLength']">
-                    Password is too short. It can be more then
-                    {{form.get('password')['errors']['minLength']['requiredLength']}}.
-                    Acctually {{form.get('password')['errors']['minLength']['actualLength']}} </span>
-                  <span *ngIf="form.get('password')['errors'] ['maxLength']"> Password is too long. No more than 255</span>
+                  <span *ngIf="form.get('password')['errors']['minLength']">
+                    Password is too short. </span>
+                  <span *ngIf="form.get('password')['errors']['maxLength']"> Password is too long. No more than 255</span>
                 </span>
                 <small id="passwordHelp"
                        class="form-text text-muted">
@@ -71,14 +69,17 @@
                 </small>
               </div>
               <div class="form-group">
-                <label for="password-conf"
+                <label for="password-confirm"
                        class="col control-label">Confirm password</label>
                 <input class="form-control"
-                       id="password-conf"
+                       id="password-confirm"
                        type="password"
-                       placeh[disabled]="!form.form.valid"
-                       older="Confirm your password"
+                       placeholder="Confirm your password"
                        formControlName="password-confirm">
+                <span class="invalid-feedback"
+                      *ngIf="form.get('password-confirm').invalid && form.get('password-confirm').touched">
+                  <span *ngIf="form.get('password-confirm')['errors']['required']"> Confirm your password.</span>
+                </span>
               </div>
               <div class="form-group">
                 <button type="submit"

@@ -19,15 +19,13 @@ export class RegistrationComponent implements OnInit {
         Validators.email,
         Validators.maxLength(255)
       ]),
-      name: new FormControl(null, [
-        Validators.required,
-        Validators.maxLength(255)
-      ]),
-      password: new FormControl([
+      name: new FormControl(null, [Validators.required, Validators.max(255)]),
+      password: new FormControl(null, [
         Validators.required,
         Validators.minLength(8),
         Validators.maxLength(255)
-      ])
+      ]),
+      "password-confirm": new FormControl(null, [Validators.required])
     });
   }
   onSubmit() {
