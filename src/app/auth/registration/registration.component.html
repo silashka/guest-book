@@ -6,85 +6,79 @@
           <div class="card-body">
             <h3 class="card-title text-center">Registration</h3>
             <form class="mt-4 needs-validation"
-                  [formGroup]="form"
+                  [formGroup]="registerForm"
                   (ngSubmit)="onSubmit()">
-              <div class="form-group"
-                   [ngClass]="{'has-error': form.get('name').invalid && form.get('name').touched}">
+              <div class="form-group">
                 <label for="name"
                        class="col control-label">Name</label>
                 <input class="form-control"
+                       [ngClass]="{'is-invalid': submitted && f.name.errors }"
                        id="name"
                        placeholder="Enter your name"
                        formControlName="name">
-                <span class="invalid-feedback"
-                      *ngIf="form.get('name').invalid && form.get('name').touched">
-                  <span *ngIf="form.get('name')['errors']['required']"> Name is required.</span>
-                  <span *ngIf="form.get('name')['errors']['maxLength']"> Name is too long. No more than 255</span>
-                </span>
+                <div *ngIf="submitted && f.name.errors"
+                     class="invalid-feedback">
+                  <div *ngIf="f.name.errors.required">Name is required</div>
+                  <div *ngIf="f.name.errors.max">Name is too long! max cab be 255.</div>
+                </div>
               </div>
-              <div class="form-group"
-                   [ngClass]="{'has-error': form.get('email').invalid && form.get('email').touched}">
+              <div class="form-group">
                 <label for="email"
                        class="col control-label">Email</label>
                 <input class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
                        id="email"
                        type="email"
                        placeholder="Enter email"
                        formControlName="email">
-                <span class="invalid-feedback"
-                      *ngIf="form.get('email').invalid && form.get('email').touched">
-                  <span *ngIf="form.get('email')['errors']['required']"> Email is required.</span>
-                  <span *ngIf="form.get('email')['errors']['email']"> Email is incorrect.</span>
-                  <span *ngIf="form.get('email')['errors']['maxLength']"> Email is too long. No more than 255</span>
-                </span>
+                <div *ngIf="submitted && f.email.errors"
+                     class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+                  <div *ngIf="f.email.errors.email">Email is incorrect.</div>
+                  <div *ngIf="f.name.errors.max">Email is too long! max cab be 255.</div>
+                </div>
+
               </div>
-              <!-- <div class="form-group">
-                <label for="avatar"
-                       class="col control-label">Avatar</label>
-                <input type="file"
-                       class="form-control-file border"
-                       id="avatar"
-                       formControlName="avatar">
-              </div> -->
-              <div class="form-group"
-                   [ngClass]="{'has-error': form.get('password').invalid && form.get('password').touched}">
+              <div class="form-group">
                 <label for="password"
                        class="col control-label">Password</label>
                 <input class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
                        id="password"
                        type="password"
                        placeholder="Enter your password"
                        formControlName="password"
                        aria-describedby="passwordHelp">
-                <span class="invalid-feedback"
-                      *ngIf="form.get('password').invalid && form.get('password').touched">
-                  <span *ngIf="form.get('password')['errors']['required']"> Password is required.</span>
-                  <span *ngIf="form.get('password')['errors']['minLength']">
-                    Password is too short. </span>
-                  <span *ngIf="form.get('password')['errors']['maxLength']"> Password is too long. No more than 255</span>
-                </span>
+                <div *ngIf="submitted && f.password.errors"
+                     class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Password is required</div>
+                  <div *ngIf="f.password.errors.min">Password must be at least 8 characters</div>
+                  <div *ngIf="f.password.errors.max">Password must be at max at 255 characters</div>
+                </div>
+
                 <small id="passwordHelp"
                        class="form-text text-muted">
                   Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
                 </small>
               </div>
               <div class="form-group">
-                <label for="password-confirm"
+                <label for="passwordConfirm"
                        class="col control-label">Confirm password</label>
                 <input class="form-control"
-                       id="password-confirm"
+                       [ngClass]="{ 'is-invalid': submitted && f.passwordConfirm.errors }"
+                       id="passwordConfirm"
                        type="password"
                        placeholder="Confirm your password"
-                       formControlName="password-confirm">
-                <span class="invalid-feedback"
-                      *ngIf="form.get('password-confirm').invalid && form.get('password-confirm').touched">
-                  <span *ngIf="form.get('password-confirm')['errors']['required']"> Confirm your password.</span>
-                </span>
+                       formControlName="passwordConfirm">
+                <div *ngIf="submitted && f.passwordConfirm.errors"
+                     class="invalid-feedback">
+                  <div *ngIf="f.passwordConfirm.errors.required">Confirm Password is required</div>
+                  <div *ngIf="f.passwordConfirm.errors.mustMatch">Passwords must match</div>
+                </div>
               </div>
               <div class="form-group">
                 <button type="submit"
-                        class="btn btn-outline-success btn-block"
-                        [disabled]="!form.valid">Sign up</button>
+                        class="btn btn-outline-success btn-block">Sign up</button>
                 <!-- <pre class="card-body mb-0">{{form.value | json}}</pre> -->
 
               </div>

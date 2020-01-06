@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-registration",
@@ -7,28 +7,38 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
   styleUrls: ["./registration.component.css"]
 })
 export class RegistrationComponent implements OnInit {
-  form: FormGroup;
+  registerForm: FormGroup;
+  submitted = false;
 
-  constructor() {}
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.form = new FormGroup({
-      avatar: new FormControl([Validators.maxLength(10000)]),
-      email: new FormControl(null, [
+    this.registerForm = this.formBuilder.group({
+      avatar: [Validators.maxLength(10000)],
+      email: ["", Validators.required, Validators.email, Validators.max(255)],
+      name: ["", Validators.required, Validators.max(255)],
+      password: [
+        "",
         Validators.required,
-        Validators.email,
-        Validators.maxLength(255)
-      ]),
-      name: new FormControl(null, [Validators.required, Validators.max(255)]),
-      password: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(255)
-      ]),
-      "password-confirm": new FormControl(null, [Validators.required])
+        Validators.min(8),
+        Validators.max(255)
+      ],
+      passwordConfirm: ["", Validators.required]
     });
   }
+
+  get f() {
+    return this.registerForm.controls;
+  }
   onSubmit() {
-    console.log(this.form);
+    this.submitted = true;
+    if (this.registerForm.invalid) {
+      return;
+    }
+    console.log(this.registerForm);
+  }
+  onReset() {
+    this.submitted = false;
+    this.registerForm.reset();
   }
 }
