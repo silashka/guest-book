@@ -37,7 +37,6 @@
                   <div *ngIf="f.email.errors.email">Email is incorrect.</div>
                   <div *ngIf="f.email.errors.max">Email is too long! max can be 255.</div>
                 </div>
-
               </div>
               <div class="form-group">
                 <label for="password"
@@ -73,7 +72,7 @@
                 <div *ngIf="submitted && f.passwordConfirm.errors"
                      class="invalid-feedback">
                   <div *ngIf="f.passwordConfirm.errors.required">Confirm Password is required</div>
-                  <div *ngIf="f.passwordConfirm.errors.mustMatch">Passwords must match</div>
+                  <div *ngIf="f.passwordConfirm.errors.equalTo">Passwords must match</div>
                 </div>
               </div>
               <div class="form-group">
